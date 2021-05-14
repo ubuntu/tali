@@ -1,0 +1,46 @@
+name: tali
+version: git
+summary: Roll dice and score points
+description: |
+  A variation on poker with dice and less money, this game is a family classic.
+  Throw the dice three times in a row, holding back the ones you like, in order
+  to make the best possible hand. You can also play a lesser-known variant with
+  colored dice.
+
+  Play between one and five opponents at three difficulty levels.     
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict
+base: core18
+
+slots:
+  # for GtkApplication registration
+  tali:
+    interface: dbus
+    bus: session
+    name: org.gnome.Tali
+
+apps:
+  tali:
+    command: usr/bin/tali
+    extensions: [gnome-3-34]
+    desktop: usr/share/applications/org.gnome.Tali.desktop
+
+parts:
+  tali:
+    source: https://gitlab.gnome.org/GNOME/tali.git
+    source-type: git
+    override-build: |
+      sed -i.bak -e 's|=org.gnome.Tali$|=${SNAP}/meta/gui/org.gnome.Tali.svg|g' data/org.gnome.Tali.desktop.in
+      snapcraftctl build
+      mkdir -p $SNAPCRAFT_PART_INSTALL/meta/gui/
+      cp ../src/data/icons/scalable/org.gnome.Tali.svg $SNAPCRAFT_PART_INSTALL/meta/gui/
+      cp ../install/snap/tali/current/usr/share/applications/org.gnome.Tali.desktop $SNAPCRAFT_PART_INSTALL/meta/gui/
+    plugin: meson
+    meson-parameters: [--prefix=/snap/tali/current/usr]
+    organize:
+      snap/tali/current/usr: usr
+    build-packages:
+      - libgnome-games-support-1-dev
+    stage-packages:
+      - libgnome-games-support-1-3
