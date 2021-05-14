@@ -1,5 +1,5 @@
 name: tali
-version: git
+adopt-info: tali
 summary: Roll dice and score points
 description: |
   A variation on poker with dice and less money, this game is a family classic.
@@ -30,6 +30,9 @@ parts:
   tali:
     source: https://gitlab.gnome.org/GNOME/tali.git
     source-type: git
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version $(git describe --tags --abbrev=10)
     override-build: |
       sed -i.bak -e 's|=org.gnome.Tali$|=${SNAP}/meta/gui/org.gnome.Tali.svg|g' data/org.gnome.Tali.desktop.in
       snapcraftctl build
