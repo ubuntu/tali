@@ -41,6 +41,7 @@ parts:
       cp ../install/snap/tali/current/usr/share/applications/org.gnome.Tali.desktop $SNAPCRAFT_PART_INSTALL/meta/gui/
     plugin: meson
     meson-parameters: [--prefix=/snap/tali/current/usr]
+    meson-version: 0.58.1
     organize:
       snap/tali/current/usr: usr
     build-packages:
