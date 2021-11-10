@@ -11,7 +11,7 @@ description: |
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
-base: core18
+base: core20
 
 slots:
   # for GtkApplication registration
@@ -23,7 +23,7 @@ slots:
 apps:
   tali:
     command: usr/bin/tali
-    extensions: [gnome-3-34]
+    extensions: [gnome-3-38]
     desktop: usr/share/applications/org.gnome.Tali.desktop
 
 parts:
@@ -34,7 +34,7 @@ parts:
       snapcraftctl pull
       snapcraftctl set-version $(git describe --tags --abbrev=10)
     override-build: |
-      sed -i.bak -e 's|=org.gnome.Tali$|=${SNAP}/meta/gui/org.gnome.Tali.svg|g' data/org.gnome.Tali.desktop.in
+      sed -i.bak -e 's|=org.gnome.Tali$|=${SNAP}/meta/gui/org.gnome.Tali.svg|g' $SNAPCRAFT_PART_SRC/data/org.gnome.Tali.desktop.in
       snapcraftctl build
       mkdir -p $SNAPCRAFT_PART_INSTALL/meta/gui/
       cp ../src/data/icons/scalable/org.gnome.Tali.svg $SNAPCRAFT_PART_INSTALL/meta/gui/
@@ -44,7 +44,3 @@ parts:
     meson-version: 0.58.1
     organize:
       snap/tali/current/usr: usr
-    build-packages:
-      - libgnome-games-support-1-dev
-    stage-packages:
-      - libgnome-games-support-1-3
