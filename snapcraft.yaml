@@ -34,7 +34,7 @@ parts:
   tali:
     source: https://gitlab.gnome.org/GNOME/tali.git
     source-type: git
-    source-tag: '40.7'
+    source-tag: '40.8'
     parse-info: [usr/share/metainfo/org.gnome.Tali.appdata.xml]
     override-pull: |
       craftctl default
