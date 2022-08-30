@@ -36,9 +36,6 @@ parts:
     source-type: git
     source-tag: '40.8'
     parse-info: [usr/share/metainfo/org.gnome.Tali.appdata.xml]
-    override-pull: |
-      craftctl default
-      craftctl set version=$(git describe --tags --abbrev=10)
     override-build: |
       sed -i.bak -e 's|=org.gnome.Tali$|=${SNAP}/meta/gui/org.gnome.Tali.svg|g' $CRAFT_PART_SRC/data/org.gnome.Tali.desktop.in
       craftctl default
