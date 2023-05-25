@@ -35,7 +35,7 @@ parts:
 # ext:updatesnap
     source: https://gitlab.gnome.org/GNOME/tali.git
     source-type: git
-    source-tag: '40.8'
+    source-tag: '40.9'
     source-depth: 1
     parse-info: [usr/share/metainfo/org.gnome.Tali.appdata.xml]
     override-build: |
