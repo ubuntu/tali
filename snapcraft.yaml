@@ -46,3 +46,7 @@ parts:
     plugin: meson
     meson-parameters:
       - --prefix=/usr
+    build-packages:
+      - libgnome-games-support-1-dev
+    stage-packages:
+      - libgnome-games-support-1-3
