@@ -11,7 +11,7 @@ description: |
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
-base: core22
+base: core24
 
 slots:
   # for GtkApplication registration
@@ -46,3 +46,7 @@ parts:
     plugin: meson
     meson-parameters:
       - --prefix=/usr
+    build-packages:
+      - libgnome-games-support-1-dev
+    stage-packages:
+      - libgnome-games-support-1-3
